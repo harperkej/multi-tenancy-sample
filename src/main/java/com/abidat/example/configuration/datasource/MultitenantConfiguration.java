@@ -1,7 +1,7 @@
-package com.abidat.configuration.datasource;
+package com.abidat.example.configuration.datasource;
 
 
-import com.abidat.configuration.DataSourceConfigurations;
+import com.abidat.example.configuration.DataSourceConfigurations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

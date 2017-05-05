@@ -1,4 +1,4 @@
-package com.abidat.user.entity;
+package com.abidat.example.user.entity;
 
 
 import javax.persistence.Entity;

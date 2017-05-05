@@ -1,4 +1,4 @@
-package com.abidat.configuration;
+package com.abidat.example.configuration;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;

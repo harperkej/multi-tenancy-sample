@@ -1,6 +1,6 @@
-package com.abidat.user.repository;
+package com.abidat.example.user.repository;
 
-import com.abidat.user.entity.UserEntity;
+import com.abidat.example.user.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

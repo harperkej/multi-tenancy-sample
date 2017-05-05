@@ -1,6 +1,6 @@
-package com.abidat.user.service;
+package com.abidat.example.user.service;
 
-import com.abidat.user.dto.UserDto;
+import com.abidat.example.user.dto.UserDto;
 
 import java.util.List;
 

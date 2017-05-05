@@ -1,6 +1,6 @@
-package com.abidat.configuration.datasource;
+package com.abidat.example.configuration.datasource;
 
-import com.abidat.configuration.TenantTracker;
+import com.abidat.example.configuration.TenantTracker;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**

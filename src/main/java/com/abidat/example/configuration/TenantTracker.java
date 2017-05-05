@@ -1,4 +1,4 @@
-package com.abidat.configuration;
+package com.abidat.example.configuration;
 
 public class TenantTracker {
 

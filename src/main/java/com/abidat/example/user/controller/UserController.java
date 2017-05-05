@@ -1,9 +1,9 @@
-package com.abidat.user.controller;
+package com.abidat.example.user.controller;
 
 
-import com.abidat.configuration.TenantTracker;
-import com.abidat.user.dto.UserDto;
-import com.abidat.user.service.UserService;
+import com.abidat.example.configuration.TenantTracker;
+import com.abidat.example.user.dto.UserDto;
+import com.abidat.example.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

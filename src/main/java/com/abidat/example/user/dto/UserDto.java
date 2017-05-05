@@ -1,4 +1,4 @@
-package com.abidat.user.dto;
+package com.abidat.example.user.dto;
 
 
 public class UserDto {

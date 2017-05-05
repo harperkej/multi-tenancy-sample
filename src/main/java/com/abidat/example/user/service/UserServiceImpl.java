@@ -1,8 +1,8 @@
-package com.abidat.user.service;
+package com.abidat.example.user.service;
 
-import com.abidat.user.dto.UserDto;
-import com.abidat.user.entity.UserEntity;
-import com.abidat.user.repository.UserRepository;
+import com.abidat.example.user.dto.UserDto;
+import com.abidat.example.user.entity.UserEntity;
+import com.abidat.example.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
