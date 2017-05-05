@@ -12,22 +12,37 @@ In order to start and run this app, you should setup the database first:
 2. Create the data for other tenants:
 
   a. Create database: 'client_1' and execute the following ddl:
+
         CREATE TABLE `user_entity` (
+
           `id` bigint(20) NOT NULL AUTO_INCREMENT,
+
           `age` int(11) NOT NULL,
+
           `full_name` varchar(255) DEFAULT NULL,
+
           `user_name` varchar(255) DEFAULT NULL,
+
           PRIMARY KEY (`id`)
+
         ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
   b. Create database: 'client_2' and execute the following ddl:
+
         CREATE TABLE `user_entity` (
+
           `id` bigint(20) NOT NULL AUTO_INCREMENT,
+
           `age` int(11) NOT NULL,
+
           `full_name` varchar(255) DEFAULT NULL,
+
           `user_name` varchar(255) DEFAULT NULL,
+
           PRIMARY KEY (`id`)
+
         ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
 
 3. Build the project -> perform: mvn clean package in the root of the project(there where pom.xml file is located)
 4. Execute the jar file in the target folder.(java -jar ...)
