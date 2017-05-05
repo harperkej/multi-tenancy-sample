@@ -53,5 +53,5 @@ In order to start and run this app, you should setup the database first:
 
  - TO BE DONE & IMPROVED:
 1. The identifications of each tenant must not be hard coded!(Maybe store in database and in the startup load in some cache or any other better solution!)
-
+2. Should the tenant id be sent as a header, or we can find a better solution?
 
