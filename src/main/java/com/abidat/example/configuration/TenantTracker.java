@@ -1,12 +1,14 @@
 package com.abidat.example.configuration;
 
+import com.abidat.example.configuration.common.Constant;
+
 public class TenantTracker {
 
     private static ThreadLocal<Object> tenant = new ThreadLocal<>();
 
 
     private static String getDefaultTenant() {
-        return "default_db";
+        return Constant.DEFAULT_TENANT;
     }
 
     public static void setCurrentTenant(Object object) {

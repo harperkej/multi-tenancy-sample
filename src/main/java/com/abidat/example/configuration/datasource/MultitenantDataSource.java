@@ -1,21 +1,28 @@
 package com.abidat.example.configuration.datasource;
 
 import com.abidat.example.configuration.TenantTracker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-/**
- * Created by a.kuci on 4/27/2017.
- */
+import javax.sql.DataSource;
+
 public class MultitenantDataSource extends AbstractRoutingDataSource {
+
+
+    @Autowired
+    DataSourceHolder dataSourceHolder;
+
+    @Override
+    protected DataSource determineTargetDataSource() {
+        return dataSourceHolder.getDataSource((String) TenantTracker.getCurrentTenant());
+    }
+
     @Override
     protected Object determineCurrentLookupKey() {
-
         return TenantTracker.getCurrentTenant();
     }
 
-    @Override
-    public String toString() {
-        return this.getClass().getName();
-    }
+
+
 
 }
