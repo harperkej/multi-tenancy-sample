@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity();
         userEntity.setFullName(userDto.getFullName());
         userEntity.setUserName(userDto.getUserName());
+        //TODO This should be encrypted!!
+        userEntity.setPassword(userDto.getPassword());
         userEntity.setAge(userDto.getAge());
         userRepository.save(userEntity);
         userDto.setId(userEntity.getId());
@@ -43,6 +45,7 @@ public class UserServiceImpl implements UserService {
             userDto.setAge(userEntity.getAge());
             userDto.setFullName(userEntity.getFullName());
             userDto.setUserName(userEntity.getUserName());
+            userDto.setPassword(userEntity.getPassword());
             users.add(userDto);
         }
         return users;
