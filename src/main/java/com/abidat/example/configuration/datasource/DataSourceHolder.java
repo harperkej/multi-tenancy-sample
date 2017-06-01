@@ -1,6 +1,7 @@
 package com.abidat.example.configuration.datasource;
 
 import com.abidat.example.configuration.common.Constant;
+import com.abidat.example.schema.SchemaGenerator;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
@@ -29,18 +30,17 @@ public class DataSourceHolder {
 
     private ConcurrentMap<String, DataSource> dataSources;
 
-    //TODO Commented out all these! Circular dependecny was a pain in the neck...so for the moment in the startup/re-deploy of application, the cache will have only the default datasource initially...
-    //@Autowired
-    //ApplicationContext applicationContext;
-
-    //private SchemaIdService schemaIdService;
-
     @PostConstruct
     public void init() throws Exception {
         try {
 
-            //schemaIdService = this.applicationContext.getBean(SchemaIdServiceImpl.class);
+            String s = "total_useless_string -> used for debug";
+
+            //create the default schema at startup - if it does not exist!
+            SchemaGenerator.createDefaultSchemaAtStartup();
+
             dataSources = new ConcurrentHashMap<>();
+
             //at the startup of the application, put the default datasource in our 'cache'.
             dataSources.put(DEFAULT_TENANT, this.getDefaultDataSource());
 

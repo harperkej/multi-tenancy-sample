@@ -29,19 +29,19 @@ public class CompanyServiceImpl implements CompanyService {
             //TODO throw a good exception here!
         } else {
             CompanyEntity companyEntity = new CompanyEntity();
-            companyEntity.setAddress(companyDto.getAddress());
-            companyEntity.setCompanyName(companyDto.getCompanyName());
-            companyEntity.setCompanyNumber(companyDto.getCompanyNumber().replace(" ", ""));
+            companyEntity.setAddress( companyDto.getAddress() );
+            companyEntity.setCompanyName( companyDto.getCompanyName() );
+            companyEntity.setCompanyNumber( companyDto.getCompanyNumber().replace( " ", "" ) );
             //try to persist the company -> in this case the tenant!
-            this.companyRepository.save(companyEntity);
-            companyDto.setId(companyEntity.getId());
-            dataSourceHolder.createNewDataSource(companyDto.getCompanyNumber().replace(" ", ""));
+            this.companyRepository.save( companyEntity );
+            companyDto.setId( companyEntity.getId() );
+            dataSourceHolder.createNewDataSource( companyDto.getCompanyNumber().replace( " ", "" ) );
             //todo create the new schema for our new tenant!
 
             //Generate the schema based on Company number, which is unique!
-            SchemaGenerator.createSchema(companyEntity.getCompanyNumber());
+            SchemaGenerator.createSchema( companyEntity.getCompanyNumber() );
 
-            companyDto.setCompanyNumber(companyDto.getCompanyNumber().replace(" ", ""));
+            companyDto.setCompanyNumber( companyDto.getCompanyNumber().replace( " ", "" ) );
 
         }
         return companyDto;
@@ -53,7 +53,7 @@ public class CompanyServiceImpl implements CompanyService {
         List<CompanyEntity> foundCompanies = this.companyRepository.findAll();
         if (foundCompanies != null && !foundCompanies.isEmpty()) {
             res = new ArrayList<>();
-            foundCompanies.stream().map(CompanyServiceImpl::convertDto).forEach(res::add);
+            foundCompanies.stream().map( CompanyServiceImpl::convertDto ).forEach( res::add );
         }
         return res;
     }
@@ -63,10 +63,10 @@ public class CompanyServiceImpl implements CompanyService {
         if (companyEntity != null) {
 
             res = new CompanyDto();
-            res.setId(companyEntity.getId());
-            res.setCompanyNumber(companyEntity.getCompanyNumber());
-            res.setAddress(companyEntity.getAddress());
-
+            res.setId( companyEntity.getId() );
+            res.setCompanyNumber( companyEntity.getCompanyNumber() );
+            res.setAddress( companyEntity.getAddress() );
+            res.setCompanyName( companyEntity.getCompanyName() );
         }
 
         return res;
