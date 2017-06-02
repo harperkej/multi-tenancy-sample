@@ -16,4 +16,8 @@ public class Constant {
 
     public static final String PASS_OF_DB_KEY = "spring.datasource.password";
 
+    public static final String WINDOWS_OS = "Windows";
+
+    public static final String LINUX_OS = "Linux";
+
 }
