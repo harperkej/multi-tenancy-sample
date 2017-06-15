@@ -6,8 +6,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import javax.sql.DataSource;
 
-public class MultitenantDataSource extends AbstractRoutingDataSource {
-
+public class MultiTenantDataSource extends AbstractRoutingDataSource {
 
     @Autowired
     DataSourceHolder dataSourceHolder;
@@ -21,8 +20,5 @@ public class MultitenantDataSource extends AbstractRoutingDataSource {
     protected Object determineCurrentLookupKey() {
         return TenantTracker.getCurrentTenant();
     }
-
-
-
-
+    
 }

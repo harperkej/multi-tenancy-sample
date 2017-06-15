@@ -15,23 +15,24 @@ import static com.abidat.example.configuration.common.Constant.DEFAULT_TENANT;
 @ComponentScan(basePackages = {"com.abidat.example"})
 public class MultitenantConfiguration {
 
-
     @Autowired
     DataSourceHolder dataSourceHolder;
 
+    //Every type there's an interaction with db, bring a new DataSource(AbstractDataSource)
+    //where the datasource of each tenant is!
     @Bean
     @Scope(value = "prototype")
     public DataSource createDataSource() throws Exception {
-        MultitenantDataSource multitenantDataSource = new MultitenantDataSource();
+        MultiTenantDataSource multiTenantDataSource = new MultiTenantDataSource();
         try {
-            multitenantDataSource.setDefaultTargetDataSource(dataSourceHolder.getDataSource(DEFAULT_TENANT));
-            multitenantDataSource.setTargetDataSources(dataSourceHolder.getAllDataSources());
-            multitenantDataSource.afterPropertiesSet();
+            multiTenantDataSource.setDefaultTargetDataSource(dataSourceHolder.getDataSource(DEFAULT_TENANT));
+            multiTenantDataSource.setTargetDataSources(dataSourceHolder.getAllDataSources());
+            multiTenantDataSource.afterPropertiesSet();
         } catch (Exception e) {
             //TODO This is a temporary exception thrown -> a 'custom' one should be thrown instead :-P.
             throw new Exception(e.getMessage());
         }
-        return multitenantDataSource;
+        return multiTenantDataSource;
     }
 
 }
