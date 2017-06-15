@@ -4,7 +4,7 @@ setlocal EnableDelayedExpansion
 
 set SCHEMA_NAME=%1
 
-set SQL_SCRIPT=USE %SCHEMA_NAME%; CREATE TABLE `user_entity` (^
+set SQL_SCRIPT=USE %SCHEMA_NAME%; CREATE TABLE if not exists `user_entity` (^
                                     `id` bigint(20) NOT NULL AUTO_INCREMENT,^
                                     `age` int(11) NOT NULL,^
                                     `full_name` varchar(255) DEFAULT NULL,^
@@ -14,6 +14,6 @@ set SQL_SCRIPT=USE %SCHEMA_NAME%; CREATE TABLE `user_entity` (^
                                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-mysql -uroot -proot -e "CREATE DATABASE %SCHEMA_NAME%"
+mysql -uroot -proot -e "CREATE DATABASE if not exists %SCHEMA_NAME%"
 mysql -uroot -proot -e "USE %SCHEMA_NAME%"
 mysql -uroot -proot -e "%SQL_SCRIPT%"

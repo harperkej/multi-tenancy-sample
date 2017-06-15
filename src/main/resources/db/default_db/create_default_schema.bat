@@ -2,9 +2,9 @@
 
 setlocal EnableDelayedExpansion
 
-set SQL_SCRIPT=create database default_db;^
+set SQL_SCRIPT=create database if not exists default_db;^
                use default_db;^
-               CREATE TABLE `company_entity` (^
+               CREATE TABLE if not exists `company_entity` (^
                     `id` bigint(20) NOT NULL AUTO_INCREMENT,^
                     `address` varchar(255) DEFAULT NULL,^
                     `company_name` varchar(255) DEFAULT NULL,^
@@ -12,7 +12,7 @@ set SQL_SCRIPT=create database default_db;^
                     PRIMARY KEY (`id`),^
                     UNIQUE KEY `UK_38t1tv869q7kvri9l4nvskhv9` (`company_number`))^
                     ENGINE=InnoDB DEFAULT CHARSET=utf8;^
-                CREATE TABLE `user_entity` (^
+                CREATE TABLE if not exists `user_entity` (^
                     `id` bigint(20) NOT NULL AUTO_INCREMENT,^
                     `age` int(11) NOT NULL,^
                     `full_name` varchar(255) DEFAULT NULL,^
@@ -22,11 +22,3 @@ set SQL_SCRIPT=create database default_db;^
                     ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
 mysql -uroot -proot -e "%SQL_SCRIPT%"
-
-
-
-
-
-
-
-
