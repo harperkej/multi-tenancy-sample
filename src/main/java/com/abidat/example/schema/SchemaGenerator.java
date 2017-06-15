@@ -3,6 +3,8 @@ package com.abidat.example.schema;
 import com.abidat.example.configuration.common.Constant;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by a.kuci on 5/18/2017.
@@ -11,39 +13,39 @@ public class SchemaGenerator {
 
     public static void createSchema(String schemaName) throws Exception {
 
-
         schemaName = schemaName.replace( " ", "" );
 
-        String currentProject = System.getProperty( "user.dir" );
-
-        String os = System.getProperty("os.name");
+        String os = System.getProperty( "os.name" );
 
         String command = "";
-
-        String toolWorkingDir = "";
 
         File file = null;
 
         Process p;
 
-        if(os.startsWith(Constant.WINDOWS_OS)) {
+        if (os.startsWith( Constant.WINDOWS_OS )) {
 
-            command = "cmd /c " + currentProject + "\\src\\main\\resources\\db\\client_schema\\create_schema.bat " + schemaName;
+            //Get batch file from
+            InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream( "create_schema.bat" );
+            //
+            Files.deleteIfExists( Paths.get( System.getProperty( "user.home" ) + "\\create_schema.bat" ) );
 
-            toolWorkingDir = currentProject + "\\src\\main\\resources\\db\\client_schema\\";
+            File relocatedSchema = new File( System.getProperty( "user.home" ) + "\\create_schema.bat" );
 
-            file = new File( toolWorkingDir );
+            Files.copy( inputStream, relocatedSchema.toPath() );
+
+            command = "cmd /c " + System.getProperty( "user.home" ) + "\\create_schema.bat " + schemaName;
+
+            file = new File( System.getProperty( "user.home" ) );
 
             p = Runtime.getRuntime().exec( command, null, file );
-        }
-        else
-        {
+        } else {
 
-            command = currentProject + "/src/main/resources/db/client_schema/create_schema.sh " + schemaName;
+            //command = currentProject + "/src/main/resources/db/client_schema/create_schema.sh " + schemaName;
 
-            toolWorkingDir = currentProject + "/src/main/resources/db/client_schema/";
+            //toolWorkingDir = currentProject + "/src/main/resources/db/client_schema/";
 
-            file = new File( toolWorkingDir );
+            //file = new File( toolWorkingDir );
 
             p = Runtime.getRuntime().exec( command, null, file );
 
@@ -65,9 +67,7 @@ public class SchemaGenerator {
             System.out.println( line );
 
         }
-
-        System.out.println(p.exitValue());
-
+        System.out.println( p.exitValue() );
 
     }
 
@@ -76,7 +76,7 @@ public class SchemaGenerator {
 
         String currentProject = System.getProperty( "user.dir" );
 
-        String os = System.getProperty("os.name");
+        String os = System.getProperty( "os.name" );
 
         String command;
 
@@ -86,17 +86,25 @@ public class SchemaGenerator {
 
         Process p;
 
-        if(os.startsWith(Constant.WINDOWS_OS)){
+        if (os.startsWith( Constant.WINDOWS_OS )) {
 
-            command = "cmd /c " + currentProject + "\\src\\main\\resources\\db\\default_db\\create_default_schema.bat ";
+            //Get batch file from jar that creates the default db.
+            InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream( "create_default_schema.bat" );
+            //Delete if there's any file in user.home directory with the name 'create_default_schema.bat'
+            Files.deleteIfExists( Paths.get( System.getProperty( "user.home" ) + "\\create_default_schema.bat" ) );
+            //Create batch file in user.directory that will create default db
+            File fileToCopyTo = new File( System.getProperty( "user.home" ) + "\\create_default_schema.bat" );
+            //copy the batch file for creating default db to user.home directory from jar -> user.home directory
+            Files.copy( inputStream, fileToCopyTo.toPath() );
+            //the command that will execute the batch in user.home directory for creating default db
+            command = "cmd /c " + System.getProperty( "user.home" ) + "\\create_default_schema.bat";
 
-            toolWorkingDir = currentProject + "\\src\\main\\resources\\db\\default_db\\";
+            toolWorkingDir = System.getProperty( "user.home" );
 
             file = new File( toolWorkingDir );
 
             p = Runtime.getRuntime().exec( command, null, file );
-        }
-        else {
+        } else {
 
             command = "bash -c " + currentProject + "/src/main/resources/db/default_db/create_default_schema.sh ";
 
@@ -126,7 +134,7 @@ public class SchemaGenerator {
 
         int exitCod = p.exitValue();
 
-        System.out.println(exitCod);
+        System.out.println( exitCod );
 
     }
 
