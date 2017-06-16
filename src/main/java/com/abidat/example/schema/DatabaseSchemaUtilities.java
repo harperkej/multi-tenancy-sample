@@ -79,6 +79,8 @@ final public class DatabaseSchemaUtilities {
             //execute shell file.
             process = Runtime.getRuntime().exec( batchOrShellCommand, null, directoryWhereBatchOrShellFileIs );
         }
+        
+        int result = process.waitFor();
     }
 
 

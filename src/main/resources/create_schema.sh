@@ -12,4 +12,4 @@ SQL_SCRIPT="create database if not exists $DATABASE_NAME;
                 \`password\` varchar(255) DEFAULT NULL,
                 PRIMARY KEY (\`id\`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
 
-mysql -uroot -proot -e "$SQL_SCRIPT"
+mysql -uroot -e "$SQL_SCRIPT"

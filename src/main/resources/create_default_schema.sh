@@ -19,4 +19,4 @@ MYSQL="create database if not exists default_db;
 			PRIMARY KEY (\`id\`))
 			ENGINE=InnoDB DEFAULT CHARSET=utf8;"
 
-mysql -uroot -proot -e "$MYSQL"
+mysql -uroot -e "$MYSQL"

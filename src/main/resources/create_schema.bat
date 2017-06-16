@@ -14,6 +14,6 @@ set SQL_SCRIPT=USE %SCHEMA_NAME%; CREATE TABLE if not exists `user_entity` (^
                                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-mysql -uroot -proot -e "CREATE DATABASE if not exists %SCHEMA_NAME%"
-mysql -uroot -proot -e "USE %SCHEMA_NAME%"
-mysql -uroot -proot -e "%SQL_SCRIPT%"
+mysql -uroot -e "CREATE DATABASE if not exists %SCHEMA_NAME%"
+mysql -uroot -e "USE %SCHEMA_NAME%"
+mysql -uroot -e "%SQL_SCRIPT%"
