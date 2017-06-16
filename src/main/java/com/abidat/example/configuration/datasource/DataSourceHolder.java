@@ -23,7 +23,9 @@ import static com.abidat.example.configuration.common.Constant.*;
 
 /**
  * This is a singleton bean which has a 'local cache' used to store
- * data sources for all clients aka tenants. This bean is also used to initialize the system.
+ * data sources for each tenant. This bean is also used to initialize the system.
+ * At the startup of app all tenants are retrieved from CompanyEntity and for each a data source is created, that are stored in
+ * the property dataSources of this class.
  */
 @Component
 @Scope(value = "singleton")
@@ -44,7 +46,7 @@ public class DataSourceHolder {
 
             Properties properties = this.getPropertiesFromApplicationPropertiesFile();
 
-            //Get the username, password and url of database to create the database at startup of app!
+            //Get the username, password and url of database to retrieve all our tenants from CompanyEntity and to created datasource for each tenant!
             String urlOfDefaultDb = properties.getProperty(Constant.URL_OF_DATABASE_KEY) + Constant.DEFAULT_TENANT;
             String user = properties.getProperty(Constant.USER_OF_DB_KEY);
             String pass = properties.getProperty(Constant.PASS_OF_DB_KEY);
@@ -56,9 +58,10 @@ public class DataSourceHolder {
 
                 try (ResultSet res = statement.executeQuery(query)) {
                     while (res.next()) {
-                        String companyName = res.getString("company_number");
-                        if (companyName != null)
-                            dataSources.put(companyName, this.createNewDataSource(companyName));
+                        String companyNumber = res.getString("company_number");
+                        if (companyNumber != null)
+                            //Simply put in cache the company number(which is unique) and the respective datasource
+                            dataSources.put(companyNumber, this.createNewDataSource(companyNumber));
                     }
                 }
             }

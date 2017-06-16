@@ -26,7 +26,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public CompanyDto createCompany(CompanyDto companyDto) throws Exception {
         if (companyDto == null) {
-            //TODO throw a good exception here!
+            //TODO throw a custom exception here!
         } else {
             CompanyEntity companyEntity = new CompanyEntity();
             companyEntity.setAddress(companyDto.getAddress());
@@ -36,11 +36,9 @@ public class CompanyServiceImpl implements CompanyService {
             this.companyRepository.save(companyEntity);
             companyDto.setId(companyEntity.getId());
             dataSourceHolder.createNewDataSource(companyDto.getCompanyNumber().replace(" ", ""));
-            //Generate the schema based on Company number, which is unique!
+            //Generate the schema based on Company number, for which we are sure that it is unique!
             DatabaseSchemaUtilities.createSchema(companyEntity.getCompanyNumber());
-
             companyDto.setCompanyNumber(companyDto.getCompanyNumber().replace(" ", ""));
-
         }
         return companyDto;
     }

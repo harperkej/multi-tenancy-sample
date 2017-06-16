@@ -13,13 +13,13 @@ import static com.abidat.example.configuration.common.Constant.DEFAULT_TENANT;
 
 @Configuration
 @ComponentScan(basePackages = {"com.abidat.example"})
-public class MultitenantConfiguration {
+public class MultiTenantConfiguration {
 
     @Autowired
     DataSourceHolder dataSourceHolder;
 
-    //Every type there's an interaction with db, bring a new DataSource(AbstractDataSource)
-    //where the datasource of each tenant is!
+    //Every time there's an interaction with db, bring all datasources including the ones that are created if any new tenant is created -> that's why the
+    //scope of this bean is prototype.
     @Bean
     @Scope(value = "prototype")
     public DataSource createDataSource() throws Exception {
