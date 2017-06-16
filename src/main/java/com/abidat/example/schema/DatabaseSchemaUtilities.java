@@ -112,7 +112,7 @@ final public class DatabaseSchemaUtilities {
             //the command that will execute the batch in user.home directory for creating default db
             batchOrShellCommand = "cmd /c " + System.getProperty("user.home") + "\\create_default_schema.bat";
 
-            directoryWhereCopiedBatchOrShellFileIs = new File(System.getenv("user.home'"));
+            directoryWhereCopiedBatchOrShellFileIs = new File(System.getProperty("user.home"));
 
             p = Runtime.getRuntime().exec(batchOrShellCommand, null, directoryWhereCopiedBatchOrShellFileIs);
         } else {
