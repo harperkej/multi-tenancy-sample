@@ -1,4 +1,4 @@
-https://travis-ci.org/harperkej/multi-tenancy-sample.svg?branch=master
+image:https://travis-ci.org/harperkej/multi-tenancy-sample.svg?branch=master
 
 This is a sample application, that shows how multi-tenancy architecture can be implemented.
 
