@@ -21,4 +21,4 @@ set SQL_SCRIPT=create database if not exists default_db;^
                     PRIMARY KEY (`id`))^
                     ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
-mysql -uroot -e "%SQL_SCRIPT%"
+mysql -uroot -proot -e "%SQL_SCRIPT%"
